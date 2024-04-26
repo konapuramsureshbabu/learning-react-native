@@ -6,7 +6,7 @@ const router= express.Router();
 router.get('/',async(req,res)=>{
     const categoryList=await Category.find();
     if(!categoryList){
-        res.status(500).json({success:false})
+        return res.status(500).json({success:false})
     }
     res.status(200).send(categoryList);
 })
@@ -14,7 +14,7 @@ router.get('/',async(req,res)=>{
 router.get('/:id',async(req,res)=>{
     const category=await Category.findById(req.params.id);
     if(!category){
-        res.status(500).json({message:"The category with given id was not in our db"})
+        return res.status(500).json({message:"The category with given id was not in our db"})
     }
     res.status(200).send(category)
 })
